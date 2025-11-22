@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import axios from "axios"
 import Link from "next/link";
@@ -36,7 +35,7 @@ export default function SignupPage () {
       console.log("Signup Successfull", response.data)
       router.push('/login') 
     }
-    catch (error: any) {
+    catch {
       toast.error("Signup Failed")
     }
   }
