@@ -1,7 +1,6 @@
 // nodemailer will be used
 import User from "@/model/userModel";
 import bcrypt from "bcryptjs";
-import { MailtrapTransport } from "mailtrap";
 import nodemailer from "nodemailer";
 
 interface EmailInterface {
@@ -30,22 +29,14 @@ export const sendEmail = async ({email, emailType, userId} : EmailInterface) => 
                 }
 
                 // Looking to send emails in production? Check out our Email API/SMTP product!
-                // const transporter = nodemailer.createTransport({
-                //         host: process.env.MAILTRAP_HOST,
-                //         port: 2525,
-                //         auth: {
-                //                 user: process.env.MAILTRAP_USER,
-                //                 pass: process.env.MAILTRAP_PASS
-                //         }
-                // });
-
-
-                const transporter = nodemailer.createTransport(
-                        MailtrapTransport({
-                        token: process.env.MAILTRAP_TOKEN!,      
-                        })
-                
-                );
+                const transporter = nodemailer.createTransport({
+                        host: process.env.MAILTRAP_HOST,
+                        port: parseInt(process.env.MAILTRAP_PORT || '2525'),
+                        auth: {
+                          user: process.env.MAILTRAP_USER,
+                          pass: process.env.MAILTRAP_PASS,
+                        }
+                      });
 
                 const html = `
                         <h1>Hello ${email}</h1>

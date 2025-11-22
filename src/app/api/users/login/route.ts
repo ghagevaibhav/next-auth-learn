@@ -27,9 +27,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
                         return NextResponse.json({error: "Check Your Credentials"}, {status: 400})
                 }
 
-                if(!user.isVerified) {
-                        return NextResponse.json({error: "Email Not Verified"}, {status: 400})
-                }
+                // if(!user.isVerified) {
+                //         return NextResponse.json({error: "Email Not Verified"}, {status: 400})
+                // }
 
                 const payload = {
                         id: user._id,
